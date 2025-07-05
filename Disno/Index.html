@@ -1,0 +1,998 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Agencia profesional de diseño web, desarrollo y marketing digital. Creamos sitios web modernos y efectivos.">
+  <title>DigitalWeb - Diseño y Desarrollo Web Profesional</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    /* ===== Variables y Reset ===== */
+    :root {
+      --primary: #2563eb;
+      --primary-dark: #1d4ed8;
+      --secondary: #0f172a;
+      --light: #f8fafc;
+      --gray: #64748b;
+      --gray-light: #e2e8f0;
+      --success: #10b981;
+      --transition: all 0.3s ease;
+      --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      --shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.1);
+      --radius: 8px;
+    }
+    
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      line-height: 1.6;
+      color: var(--secondary);
+      background-color: #f1f5f9;
+      overflow-x: hidden;
+    }
+    
+    img {
+      max-width: 100%;
+      display: block;
+    }
+    
+    ul {
+      list-style: none;
+    }
+    
+    a {
+      text-decoration: none;
+      color: inherit;
+      transition: var(--transition);
+    }
+    
+    .container {
+      width: 90%;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 1rem;
+    }
+    
+    .section-padding {
+      padding: 5rem 0;
+    }
+    
+    .text-center {
+      text-align: center;
+    }
+    
+    .btn {
+      display: inline-block;
+      padding: 0.8rem 1.8rem;
+      border-radius: var(--radius);
+      font-weight: 600;
+      cursor: pointer;
+      transition: var(--transition);
+      border: none;
+      font-size: 1rem;
+    }
+    
+    .btn-primary {
+      background-color: var(--primary);
+      color: white;
+    }
+    
+    .btn-primary:hover {
+      background-color: var(--primary-dark);
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-lg);
+    }
+    
+    .btn-outline {
+      background-color: transparent;
+      border: 2px solid var(--primary);
+      color: var(--primary);
+    }
+    
+    .btn-outline:hover {
+      background-color: var(--primary);
+      color: white;
+    }
+    
+    /* ===== Header & Navigation ===== */
+    .header {
+      background-color: white;
+      box-shadow: var(--shadow);
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      z-index: 1000;
+    }
+    
+    .header-container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1.2rem 0;
+    }
+    
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+    }
+    
+    .logo img {
+      height: 50px;
+      border-radius: 50%;
+    }
+    
+    .logo-text {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--primary);
+    }
+    
+    .nav-list {
+      display: flex;
+      gap: 2rem;
+    }
+    
+    .nav-link {
+      font-weight: 600;
+      position: relative;
+      padding: 0.5rem 0;
+    }
+    
+    .nav-link::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 0;
+      height: 3px;
+      background-color: var(--primary);
+      transition: var(--transition);
+    }
+    
+    .nav-link:hover::after,
+    .nav-link.active::after {
+      width: 100%;
+    }
+    
+    .nav-toggle {
+      display: none;
+      background: none;
+      border: none;
+      font-size: 1.5rem;
+      cursor: pointer;
+      color: var(--secondary);
+    }
+    
+    /* ===== Hero Section ===== */
+    .hero {
+      background: linear-gradient(135deg, #2563eb 0%, #1e40af 100%);
+      color: white;
+      padding: 10rem 0 6rem;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-image: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiPjxkZWZzPjxwYXR0ZXJuIGlkPSJwYXR0ZXJuIiB3aWR0aD0iNTAiIGhlaWdodD0iNTAiIHBhdHRlcm5Vbml0cz0idXNlclNwYWNlT25Vc2UiIHBhdHRlcm5UcmFuc2Zvcm09InJvdGF0ZSg0NSkiPjxjaXJjbGUgY3g9IjI1IiBjeT0iMjUiIHI9IjEuNSIgZmlsbD0iIzAwMCIgZmlsbC1vcGFjaXR5PSIwLjEiLz48L3BhdHRlcm4+PC9kZWZzPjxyZWN0IHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIGZpbGw9InVybCgjcGF0dGVybikiLz48L3N2Zz4=');
+      opacity: 0.1;
+    }
+    
+    .hero-content {
+      max-width: 700px;
+      position: relative;
+      z-index: 2;
+    }
+    
+    .hero h1 {
+      font-size: 3.5rem;
+      line-height: 1.2;
+      margin-bottom: 1.5rem;
+    }
+    
+    .hero p {
+      font-size: 1.2rem;
+      margin-bottom: 2rem;
+      opacity: 0.9;
+    }
+    
+    .hero-btns {
+      display: flex;
+      gap: 1rem;
+      margin-top: 2rem;
+    }
+    
+    .btn-light {
+      background-color: white;
+      color: var(--primary);
+    }
+    
+    .btn-light:hover {
+      background-color: var(--gray-light);
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-lg);
+    }
+    
+    /* ===== Services Section ===== */
+    .services {
+      background-color: white;
+      position: relative;
+    }
+    
+    .section-header {
+      margin-bottom: 3rem;
+    }
+    
+    .section-header h2 {
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+      color: var(--secondary);
+    }
+    
+    .section-header p {
+      color: var(--gray);
+      max-width: 600px;
+      margin: 0 auto;
+    }
+    
+    .service-cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+    }
+    
+    .card {
+      background: white;
+      border-radius: var(--radius);
+      overflow: hidden;
+      box-shadow: var(--shadow);
+      transition: var(--transition);
+      padding: 2.5rem 2rem;
+      text-align: center;
+      border: 1px solid var(--gray-light);
+    }
+    
+    .card:hover {
+      transform: translateY(-10px);
+      box-shadow: var(--shadow-lg);
+    }
+    
+    .card-icon {
+      font-size: 3rem;
+      color: var(--primary);
+      margin-bottom: 1.5rem;
+    }
+    
+    .card h3 {
+      font-size: 1.5rem;
+      margin-bottom: 1rem;
+    }
+    
+    /* ===== Portfolio Section ===== */
+    .portfolio {
+      background-color: #f8fafc;
+    }
+    
+    .portfolio-filters {
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      margin-bottom: 2.5rem;
+      flex-wrap: wrap;
+    }
+    
+    .filter-btn {
+      padding: 0.5rem 1.5rem;
+      border-radius: 30px;
+      background: transparent;
+      border: 1px solid var(--gray-light);
+      cursor: pointer;
+      transition: var(--transition);
+    }
+    
+    .filter-btn.active, 
+    .filter-btn:hover {
+      background-color: var(--primary);
+      color: white;
+      border-color: var(--primary);
+    }
+    
+    .portfolio-items {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+    }
+    
+    .portfolio-item {
+      border-radius: var(--radius);
+      overflow: hidden;
+      box-shadow: var(--shadow);
+      transition: var(--transition);
+      background: white;
+    }
+    
+    .portfolio-item:hover {
+      transform: translateY(-5px);
+      box-shadow: var(--shadow-lg);
+    }
+    
+    .portfolio-img {
+      height: 250px;
+      background-color: var(--gray-light);
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .portfolio-img::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(transparent 60%, rgba(0, 0, 0, 0.7));
+      z-index: 1;
+    }
+    
+    .portfolio-content {
+      padding: 1.5rem;
+    }
+    
+    .portfolio-content h3 {
+      margin-bottom: 0.5rem;
+    }
+    
+    .portfolio-content p {
+      color: var(--gray);
+      margin-bottom: 1rem;
+    }
+    
+    .portfolio-tags {
+      display: flex;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+      margin-top: 1rem;
+    }
+    
+    .tag {
+      background-color: var(--gray-light);
+      padding: 0.3rem 0.8rem;
+      border-radius: 30px;
+      font-size: 0.85rem;
+    }
+    
+    /* ===== Contact Section ===== */
+    .contact {
+      background-color: white;
+    }
+    
+    .contact-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 3rem;
+    }
+    
+    .contact-info {
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
+    }
+    
+    .contact-item {
+      display: flex;
+      gap: 1rem;
+    }
+    
+    .contact-icon {
+      font-size: 1.5rem;
+      color: var(--primary);
+      min-width: 40px;
+    }
+    
+    .contact-details h3 {
+      margin-bottom: 0.5rem;
+    }
+    
+    .contact-form {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+    
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+    
+    .form-group label {
+      font-weight: 600;
+    }
+    
+    .form-control {
+      padding: 0.8rem 1rem;
+      border: 1px solid var(--gray-light);
+      border-radius: var(--radius);
+      font-size: 1rem;
+      transition: var(--transition);
+    }
+    
+    .form-control:focus {
+      outline: none;
+      border-color: var(--primary);
+      box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.2);
+    }
+    
+    textarea.form-control {
+      min-height: 150px;
+      resize: vertical;
+    }
+    
+    .map-container {
+      margin-top: 2rem;
+      height: 300px;
+      border-radius: var(--radius);
+      overflow: hidden;
+      box-shadow: var(--shadow);
+    }
+    
+    .map-placeholder {
+      width: 100%;
+      height: 100%;
+      background: var(--gray-light);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--gray);
+    }
+    
+    /* ===== Footer ===== */
+    .footer {
+      background-color: var(--secondary);
+      color: white;
+      padding: 4rem 0 2rem;
+    }
+    
+    .footer-content {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 3rem;
+      margin-bottom: 3rem;
+    }
+    
+    .footer-logo {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      margin-bottom: 1.5rem;
+    }
+    
+    .footer-logo img {
+      height: 50px;
+      border-radius: 50%;
+    }
+    
+    .footer-logo-text {
+      font-size: 1.5rem;
+      font-weight: 700;
+    }
+    
+    .footer-about p {
+      color: #94a3b8;
+      margin-bottom: 1.5rem;
+    }
+    
+    .footer-title {
+      font-size: 1.2rem;
+      margin-bottom: 1.5rem;
+      position: relative;
+      padding-bottom: 0.5rem;
+    }
+    
+    .footer-title::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 50px;
+      height: 2px;
+      background-color: var(--primary);
+    }
+    
+    .footer-links li {
+      margin-bottom: 0.8rem;
+    }
+    
+    .footer-links a {
+      color: #94a3b8;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    
+    .footer-links a:hover {
+      color: white;
+      transform: translateX(5px);
+    }
+    
+    .social-links {
+      display: flex;
+      gap: 1rem;
+      margin-top: 1.5rem;
+    }
+    
+    .social-link {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background-color: #1e293b;
+      color: white;
+      transition: var(--transition);
+    }
+    
+    .social-link:hover {
+      background-color: var(--primary);
+      transform: translateY(-3px);
+    }
+    
+    .footer-bottom {
+      border-top: 1px solid #1e293b;
+      padding-top: 2rem;
+      text-align: center;
+      color: #94a3b8;
+    }
+    
+    /* ===== Responsive Design ===== */
+    @media (max-width: 992px) {
+      .hero h1 {
+        font-size: 2.8rem;
+      }
+    }
+    
+    @media (max-width: 768px) {
+      .nav {
+        position: fixed;
+        top: 80px;
+        left: -100%;
+        width: 80%;
+        height: calc(100vh - 80px);
+        background: white;
+        flex-direction: column;
+        padding: 2rem;
+        box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+        transition: var(--transition);
+      }
+      
+      .nav.active {
+        left: 0;
+      }
+      
+      .nav-list {
+        flex-direction: column;
+        gap: 1.5rem;
+      }
+      
+      .nav-toggle {
+        display: block;
+      }
+      
+      .hero {
+        padding: 8rem 0 4rem;
+      }
+      
+      .hero h1 {
+        font-size: 2.3rem;
+      }
+      
+      .hero-btns {
+        flex-direction: column;
+      }
+      
+      .section-header h2 {
+        font-size: 2rem;
+      }
+    }
+    
+    @media (max-width: 480px) {
+      .hero h1 {
+        font-size: 2rem;
+      }
+      
+      .section-padding {
+        padding: 3rem 0;
+      }
+    }
+    
+    /* Animaciones */
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    
+    .animate {
+      animation: fadeIn 0.8s ease forwards;
+    }
+    
+    .delay-1 { animation-delay: 0.1s; }
+    .delay-2 { animation-delay: 0.2s; }
+    .delay-3 { animation-delay: 0.3s; }
+    .delay-4 { animation-delay: 0.4s; }
+  </style>
+</head>
+<body>
+  <!-- ===== Header & Navigation ===== -->
+  <header class="header">
+    <div class="container header-container">
+      <div class="logo">
+        <img src="https://cdn-icons-png.flaticon.com/512/2455/2455302.png" alt="Logo de DigitalWeb">
+        <span class="logo-text">DigitalWeb</span>
+      </div>
+      
+      <nav class="nav" aria-label="Menú principal">
+        <ul class="nav-list">
+          <li><a href="#inicio" class="nav-link active">Inicio</a></li>
+          <li><a href="#servicios" class="nav-link">Servicios</a></li>
+          <li><a href="#portafolio" class="nav-link">Portafolio</a></li>
+          <li><a href="#contacto" class="nav-link">Contacto</a></li>
+        </ul>
+      </nav>
+      
+      <button class="nav-toggle" aria-label="Abrir menú">
+        <i class="fas fa-bars"></i>
+      </button>
+    </div>
+  </header>
+
+  <!-- ===== Hero Section ===== -->
+  <section class="hero" id="inicio">
+    <div class="container">
+      <div class="hero-content">
+        <h1 class="animate">Construyamos tu presencia digital</h1>
+        <p class="animate delay-1">Diseño web moderno, responsivo y a tu medida. ¡Haz crecer tu negocio con nosotros!</p>
+        <div class="hero-btns animate delay-2">
+          <a href="#servicios" class="btn btn-primary">Nuestros Servicios</a>
+          <a href="#contacto" class="btn btn-light">Contáctanos</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== Services Section ===== -->
+  <section class="services section-padding" id="servicios">
+    <div class="container">
+      <div class="section-header text-center animate">
+        <h2>Nuestros Servicios</h2>
+        <p>Ofrecemos soluciones digitales integrales para potenciar tu negocio en línea</p>
+      </div>
+      
+      <div class="service-cards">
+        <article class="card animate delay-1">
+          <div class="card-icon">
+            <i class="fas fa-laptop-code"></i>
+          </div>
+          <h3>Diseño Web</h3>
+          <p>Diseños atractivos, modernos y adaptables a cualquier dispositivo. Creamos experiencias de usuario excepcionales.</p>
+        </article>
+        
+        <article class="card animate delay-2">
+          <div class="card-icon">
+            <i class="fas fa-search"></i>
+          </div>
+          <h3>SEO</h3>
+          <p>Optimización para que tu sitio aparezca en los primeros resultados de búsqueda. Aumenta tu visibilidad orgánica.</p>
+        </article>
+        
+        <article class="card animate delay-3">
+          <div class="card-icon">
+            <i class="fas fa-bullhorn"></i>
+          </div>
+          <h3>Marketing Digital</h3>
+          <p>Campañas efectivas para aumentar tu visibilidad y ventas online. Segmentación precisa y análisis de resultados.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== Portfolio Section ===== -->
+  <section class="portfolio section-padding" id="portafolio">
+    <div class="container">
+      <div class="section-header text-center animate">
+        <h2>Proyectos Destacados</h2>
+        <p>Algunos de nuestros trabajos recientes que demuestran nuestra experiencia</p>
+      </div>
+      
+      <div class="portfolio-filters">
+        <button class="filter-btn active">Todos</button>
+        <button class="filter-btn">Diseño Web</button>
+        <button class="filter-btn">E-commerce</button>
+        <button class="filter-btn">Branding</button>
+      </div>
+      
+      <div class="portfolio-items">
+        <article class="portfolio-item animate">
+          <div class="portfolio-img" style="background: linear-gradient(45deg, #4f46e5, #7c3aed);">
+            <div class="portfolio-tags">
+              <span class="tag">Diseño Web</span>
+              <span class="tag">UI/UX</span>
+            </div>
+          </div>
+          <div class="portfolio-content">
+            <h3>Tienda en Línea ModaStyle</h3>
+            <p>Plataforma de e-commerce para tienda de moda con diseño moderno y funcionalidades avanzadas.</p>
+          </div>
+        </article>
+        
+        <article class="portfolio-item animate delay-1">
+          <div class="portfolio-img" style="background: linear-gradient(45deg, #0ea5e9, #06b6d4);">
+            <div class="portfolio-tags">
+              <span class="tag">Web Corporativa</span>
+              <span class="tag">SEO</span>
+            </div>
+          </div>
+          <div class="portfolio-content">
+            <h3>Web Corporativa TechSolutions</h3>
+            <p>Sitio web profesional para empresa de tecnología con enfoque en posicionamiento SEO.</p>
+          </div>
+        </article>
+        
+        <article class="portfolio-item animate delay-2">
+          <div class="portfolio-img" style="background: linear-gradient(45deg, #f97316, #eab308);">
+            <div class="portfolio-tags">
+              <span class="tag">App Móvil</span>
+              <span class="tag">UI/UX</span>
+            </div>
+          </div>
+          <div class="portfolio-content">
+            <h3>App Restaurante FoodExpress</h3>
+            <p>Aplicación móvil para pedidos en restaurante con diseño intuitivo y sistema de seguimiento.</p>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== Contact Section ===== -->
+  <section class="contact section-padding" id="contacto">
+    <div class="container">
+      <div class="section-header text-center animate">
+        <h2>Contáctanos</h2>
+        <p>Estamos listos para convertir tu idea en realidad. ¡Hablemos!</p>
+      </div>
+      
+      <div class="contact-container">
+        <div class="contact-info animate">
+          <div class="contact-item">
+            <div class="contact-icon">
+              <i class="fas fa-map-marker-alt"></i>
+            </div>
+            <div class="contact-details">
+              <h3>Ubicación</h3>
+              <p>Av. Principal #123, Ciudad, País</p>
+            </div>
+          </div>
+          
+          <div class="contact-item">
+            <div class="contact-icon">
+              <i class="fas fa-phone-alt"></i>
+            </div>
+            <div class="contact-details">
+              <h3>Teléfono</h3>
+              <p>+1 (123) 456-7890</p>
+            </div>
+          </div>
+          
+          <div class="contact-item">
+            <div class="contact-icon">
+              <i class="fas fa-envelope"></i>
+            </div>
+            <div class="contact-details">
+              <h3>Email</h3>
+              <p>info@digitalweb.com</p>
+            </div>
+          </div>
+          
+          <div class="contact-item">
+            <div class="contact-icon">
+              <i class="fas fa-clock"></i>
+            </div>
+            <div class="contact-details">
+              <h3>Horario</h3>
+              <p>Lun-Vie: 9:00 - 18:00</p>
+            </div>
+          </div>
+        </div>
+        
+        <form action="#" method="post" class="contact-form animate delay-1">
+          <div class="form-group">
+            <label for="name">Nombre Completo</label>
+            <input type="text" id="name" name="name" class="form-control" placeholder="Tu Nombre" required>
+          </div>
+          
+          <div class="form-group">
+            <label for="email">Correo Electrónico</label>
+            <input type="email" id="email" name="email" class="form-control" placeholder="Tu Correo" required>
+          </div>
+          
+          <div class="form-group">
+            <label for="subject">Asunto</label>
+            <input type="text" id="subject" name="subject" class="form-control" placeholder="Asunto del mensaje">
+          </div>
+          
+          <div class="form-group">
+            <label for="message">Mensaje</label>
+            <textarea id="message" name="message" class="form-control" placeholder="Tu Mensaje" required></textarea>
+          </div>
+          
+          <button type="submit" class="btn btn-primary">Enviar Mensaje</button>
+        </form>
+      </div>
+      
+      <div class="map-container animate delay-2">
+        <div class="map-placeholder">
+          <i class="fas fa-map-marked-alt fa-3x"></i>
+          <span style="margin-left: 10px;">Ubicación en el mapa</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== Footer ===== -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-about">
+          <div class="footer-logo">
+            <img src="https://cdn-icons-png.flaticon.com/512/2455/2455302.png" alt="Logo de DigitalWeb">
+            <span class="footer-logo-text">DigitalWeb</span>
+          </div>
+          <p>Somos una agencia digital apasionada por crear experiencias web excepcionales que impulsan el crecimiento de tu negocio.</p>
+          <div class="social-links">
+            <a href="https://twitter.com" class="social-link" aria-label="Twitter">
+              <i class="fab fa-twitter"></i>
+            </a>
+            <a href="https://facebook.com" class="social-link" aria-label="Facebook">
+              <i class="fab fa-facebook-f"></i>
+            </a>
+            <a href="https://instagram.com" class="social-link" aria-label="Instagram">
+              <i class="fab fa-instagram"></i>
+            </a>
+            <a href="https://github.com" class="social-link" aria-label="GitHub">
+              <i class="fab fa-github"></i>
+            </a>
+          </div>
+        </div>
+        
+        <div class="footer-links">
+          <h3 class="footer-title">Enlaces Rápidos</h3>
+          <ul>
+            <li><a href="#inicio"><i class="fas fa-chevron-right"></i> Inicio</a></li>
+            <li><a href="#servicios"><i class="fas fa-chevron-right"></i> Servicios</a></li>
+            <li><a href="#portafolio"><i class="fas fa-chevron-right"></i> Portafolio</a></li>
+            <li><a href="#contacto"><i class="fas fa-chevron-right"></i> Contacto</a></li>
+          </ul>
+        </div>
+        
+        <div class="footer-links">
+          <h3 class="footer-title">Nuestros Servicios</h3>
+          <ul>
+            <li><a href="#"><i class="fas fa-chevron-right"></i> Diseño Web</a></li>
+            <li><a href="#"><i class="fas fa-chevron-right"></i> Desarrollo App</a></li>
+            <li><a href="#"><i class="fas fa-chevron-right"></i> SEO</a></li>
+            <li><a href="#"><i class="fas fa-chevron-right"></i> Marketing Digital</a></li>
+          </ul>
+        </div>
+        
+        <div class="footer-links">
+          <h3 class="footer-title">Newsletter</h3>
+          <p>Suscríbete para recibir nuestras últimas noticias y ofertas.</p>
+          <div class="form-group">
+            <input type="email" class="form-control" placeholder="Tu correo electrónico">
+            <button class="btn btn-primary" style="margin-top: 10px;">Suscribirse</button>
+          </div>
+        </div>
+      </div>
+      
+      <div class="footer-bottom">
+        <p>&copy; 2025 DigitalWeb. Todos los derechos reservados.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Navegación responsive
+    const navToggle = document.querySelector('.nav-toggle');
+    const nav = document.querySelector('.nav');
+    
+    navToggle.addEventListener('click', () => {
+      nav.classList.toggle('active');
+      const icon = navToggle.querySelector('i');
+      icon.classList.toggle('fa-bars');
+      icon.classList.toggle('fa-times');
+    });
+    
+    // Cerrar menú al hacer clic en un enlace
+    document.querySelectorAll('.nav-link').forEach(link => {
+      link.addEventListener('click', () => {
+        nav.classList.remove('active');
+        navToggle.querySelector('i').classList.add('fa-bars');
+        navToggle.querySelector('i').classList.remove('fa-times');
+      });
+    });
+    
+    // Scroll suave
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function(e) {
+        e.preventDefault();
+        
+        const targetId = this.getAttribute('href');
+        if (targetId === '#') return;
+        
+        const targetElement = document.querySelector(targetId);
+        if (targetElement) {
+          window.scrollTo({
+            top: targetElement.offsetTop - 80,
+            behavior: 'smooth'
+          });
+        }
+      });
+    });
+    
+    // Cambiar clase activa en navegación
+    window.addEventListener('scroll', () => {
+      const sections = document.querySelectorAll('section');
+      const navLinks = document.querySelectorAll('.nav-link');
+      
+      let current = '';
+      
+      sections.forEach(section => {
+        const sectionTop = section.offsetTop;
+        const sectionHeight = section.clientHeight;
+        
+        if (pageYOffset >= sectionTop - 100) {
+          current = section.getAttribute('id');
+        }
+      });
+      
+      navLinks.forEach(link => {
+        link.classList.remove('active');
+        if (link.getAttribute('href') === `#${current}`) {
+          link.classList.add('active');
+        }
+      });
+    });
+    
+    // Animaciones al hacer scroll
+    const animateOnScroll = () => {
+      const elements = document.querySelectorAll('.animate');
+      
+      elements.forEach(element => {
+        const elementPosition = element.getBoundingClientRect().top;
+        const screenPosition = window.innerHeight / 1.3;
+        
+        if (elementPosition < screenPosition) {
+          element.style.opacity = 1;
+          element.style.transform = 'translateY(0)';
+        }
+      });
+    };
+    
+    window.addEventListener('scroll', animateOnScroll);
+    window.addEventListener('load', animateOnScroll);
+  </script>
+</body>
+</html>
